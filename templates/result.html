@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Assistant chatbot</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+    <style>
+        body {
+            background-color: #111827;
+            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+        }
+        .pulse-animation {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-900">
+    <div class="container mx-auto px-4 py-10">
+        <header class="mb-12 text-center">
+            <div class="flex justify-center mb-4">
+            </div>
+            <h1 class="text-4xl font-bold mb-2 gradient-text">Medical  Assistant chatbot</h1>
+            <p class="text-gray-400 text-lg">Analysis Results</p>
+        </header>
+
+        <main class="max-w-2xl mx-auto">
+            <div class="bg-gray-800 rounded-lg shadow-xl p-8 mb-10">
+                <div class="flex items-center mb-6">
+                    <i data-lucide="clipboard-check" class="mr-3 text-green-500"></i>
+                    <h2 class="text-2xl font-semibold">Disease Detected</h2>
+                </div>
+                
+                <div class="bg-gray-700 rounded-lg p-6 mb-6">
+                    <div class="flex items-center justify-center py-6">
+                        <h3 class="text-3xl font-bold gradient-text">{{ disease }}</h3>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between">
+                    <a href="/" class="bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded-lg flex items-center transition duration-300">
+                        <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                        Try Again
+                    </a>
+                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg flex items-center transition duration-300" onclick="window.print()">
+                        <i data-lucide="printer" class="w-4 h-4 mr-2"></i>
+                        Print Results
+                    </button>
+                </div>
+            </div>
+
+            <div class="text-center text-gray-500 text-sm">
+                <p>This tool is for informational purposes only and should not replace professional medical advice.</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
