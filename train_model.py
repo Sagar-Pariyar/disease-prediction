@@ -1,6 +1,6 @@
 import nltk
 import pandas as pd
-from nltk.tokenize import word_tokenize
+from nltk.tokenize import TreebankWordTokenizer
 from nltk.stem import SnowballStemmer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.ensemble import VotingClassifier
@@ -23,8 +23,10 @@ nltk.data.path.append('nltk_data')
 df = pd.read_csv('Symptom2Disease.csv')
 df.drop(['Unnamed: 0'], axis=1, inplace=True)
 
+tokenizer = TreebankWordTokenizer()
+
 def preprocess_text(text):
-    tokens = word_tokenize(text)
+    tokens = tokenizer.tokenize(text)
     stemmer = SnowballStemmer('english')
     tokens = [stemmer.stem(token.lower()) for token in tokens if token.isalpha()]
     return ' '.join(tokens)
