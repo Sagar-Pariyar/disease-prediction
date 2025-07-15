@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from nltk.tokenize import word_tokenize
+from nltk.tokenize import TreebankWordTokenizer
 from nltk.stem import SnowballStemmer
 import joblib
 import os
@@ -18,8 +18,11 @@ label_encoder = joblib.load(os.path.join(MODEL_DIR, 'label_encoder_disease_nlp.j
 
 app = Flask(__name__)
 
+
+tokenizer = TreebankWordTokenizer()
+
 def preprocess_text(text):
-    tokens = word_tokenize(text)
+    tokens = tokenizer.tokenize(text)
     stemmer = SnowballStemmer('english')
     tokens = [stemmer.stem(token.lower()) for token in tokens if token.isalpha()]
     return ' '.join(tokens)
